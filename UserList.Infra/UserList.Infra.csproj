@@ -6,6 +6,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UserList.Domain\UserList.Domain.csproj" />
+    <ProjectReference Include="..\UserList.Shared\UserList.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.4" />
   </ItemGroup>
 
 </Project>
