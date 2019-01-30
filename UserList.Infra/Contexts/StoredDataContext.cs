@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UserList.Domain.Models;
+using UserList.Infra.Maps;
 using UserList.Shared;
 
 namespace UserList.Infra.Contexts
@@ -12,6 +13,11 @@ namespace UserList.Infra.Contexts
         {
             if (!optionsBuilder.IsConfigured)
                 optionsBuilder.UseMySql(Runtime.ConnectionStringMysql);
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfiguration(new UserMap());
         }
     }
 }
