@@ -4,6 +4,8 @@ namespace UserList.Domain.ValueObjects
 {
     public class Name
     {
+        protected Name() { }
+
         public Name(string firstName, string lastName)
         {
             FirstName = firstName;
