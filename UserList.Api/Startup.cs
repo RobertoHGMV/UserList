@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using UserList.DependencyInjection;
 
 namespace UserList.Api
 {
@@ -14,6 +15,7 @@ namespace UserList.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            new Resolver().Resolve(services);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -21,10 +23,10 @@ namespace UserList.Api
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            // app.Run(async (context) =>
+            // {
+            //     await context.Response.WriteAsync("Hello World!");
+            // });
 
             app.UseMvc();
         }

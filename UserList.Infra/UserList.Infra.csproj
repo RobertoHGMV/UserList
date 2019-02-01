@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UserList.Domain\UserList.Domain.csproj" />
-    <ProjectReference Include="..\UserList.Shared\UserList.Shared.csproj" />
+    <ProjectReference Include="..\UserList.Commom\UserList.Commom.csproj" />
   </ItemGroup>
 
   <ItemGroup>

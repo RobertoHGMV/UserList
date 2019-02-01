@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UserList.Domain\UserList.Domain.csproj" />
+    <ProjectReference Include="..\UserList.DependencyInjection\UserList.DependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>

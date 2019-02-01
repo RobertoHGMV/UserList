@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using UserList.Commom;
 using UserList.Domain.Models;
 using UserList.Infra.Maps;
-using UserList.Shared;
 
 namespace UserList.Infra.Contexts
 {

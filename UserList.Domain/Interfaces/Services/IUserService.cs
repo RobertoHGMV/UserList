@@ -6,10 +6,10 @@ namespace UserList.Domain.Interfaces.Services
 {
     public interface IUserService
     {
-        ListUserModel GetByKey(int id);
+        User GetByKey(int id);
         ICollection<ListUserModel> GetAll();
-        void Add(EditorUserModel user);
-        void Update(EditorUserModel user);
+        void Add(RegisterUserModel userEditor);
+        void Update(EditorUserModel userEditor);
         void Delete(int id);
     }
 }

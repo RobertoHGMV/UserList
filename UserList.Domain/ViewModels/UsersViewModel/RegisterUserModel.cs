@@ -3,9 +3,8 @@ using System.Linq;
 
 namespace UserList.Domain.ViewModels.UsersViewModel
 {
-    public class EditorUserModel
+    public class RegisterUserModel
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 

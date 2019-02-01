@@ -1,4 +1,4 @@
-namespace UserList.Shared
+namespace UserList.Commom
 {
     public static class Runtime
     {
