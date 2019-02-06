@@ -16,6 +16,7 @@ namespace UserList.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddCors();
             services.AddResponseCompression();
             new Resolver().Resolve(services);
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "UserList", Version = "v1" }); });
@@ -27,6 +28,13 @@ namespace UserList.Api
                 app.UseDeveloperExceptionPage();
 
             // app.Run(async (context) => { await context.Response.WriteAsync("Hello World!"); });
+
+            app.UseCors(x =>
+            {
+                x.AllowAnyHeader();
+                x.AllowAnyMethod();
+                x.AllowAnyOrigin();
+            });
 
             app.UseMvc();
             app.UseResponseCompression();

@@ -43,7 +43,8 @@ namespace UserList.Infra.Repositories
             {
                 Id = c.Id,
                 FirstName = c.FirstName,
-                LastName = c.LastName
+                LastName = c.LastName,
+                FullName = c.ToString()
             }).AsNoTracking().ToList();
         }
 
@@ -53,7 +54,8 @@ namespace UserList.Infra.Repositories
             {
                 Id = c.Id,
                 FirstName = c.FirstName,
-                LastName = c.LastName
+                LastName = c.LastName,
+                FullName = c.ToString()
             }).AsNoTracking().Skip(skip).Take(take).ToList();
         }
     }

@@ -69,6 +69,7 @@ namespace UserList.Api.Controllers
         [ResponseCache(Duration = 1, Location = ResponseCacheLocation.Client)]
         public Task<IActionResult> GetAll(int skip, int take)
         {
+            //skip = página atual - 1 * total por página (take) = pula 10 registros com total de 5 por página
             IActionResult result;
 
             try
