@@ -26,6 +26,7 @@ namespace UserList.Api.Controllers
 
         [HttpGet]
         [Route("v1/users/{id}")]
+        [ResponseCache(Duration = 1, Location = ResponseCacheLocation.Client)]
         public Task<IActionResult> Get(int id)
         {
             IActionResult result;
@@ -45,6 +46,7 @@ namespace UserList.Api.Controllers
 
         [HttpGet]
         [Route("v1/users")]
+        [ResponseCache(Duration = 1, Location = ResponseCacheLocation.Client)]
         public Task<IActionResult> GetAll()
         {
             IActionResult result;
@@ -52,6 +54,26 @@ namespace UserList.Api.Controllers
             try
             {
                 var users = _service.GetAll();
+                result = Ok(new ResultViewModel { Success = true, Message = "Operação realizada com sucesso", Data = users });
+            }
+            catch (Exception ex)
+            {
+                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Data = ex });
+            }
+
+            return GetResult(result);
+        }
+
+        [HttpGet]
+        [Route("v1/users/{skip}/{take}")]
+        [ResponseCache(Duration = 1, Location = ResponseCacheLocation.Client)]
+        public Task<IActionResult> GetAll(int skip, int take)
+        {
+            IActionResult result;
+
+            try
+            {
+                var users = _service.GetAll(skip, take);
                 result = Ok(new ResultViewModel { Success = true, Message = "Operação realizada com sucesso", Data = users });
             }
             catch (Exception ex)

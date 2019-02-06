@@ -8,6 +8,7 @@ namespace UserList.Domain.Interfaces.Services
     {
         User GetByKey(int id);
         ICollection<ListUserModel> GetAll();
+        ListUserModelPagination GetAll(int skip, int take);
         void Add(RegisterUserModel userEditor);
         void Update(EditorUserModel userEditor);
         void Delete(int id);

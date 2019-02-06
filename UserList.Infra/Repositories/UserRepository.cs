@@ -1,5 +1,3 @@
-
-
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +45,16 @@ namespace UserList.Infra.Repositories
                 FirstName = c.FirstName,
                 LastName = c.LastName
             }).AsNoTracking().ToList();
+        }
+
+        public ICollection<ListUserModel> GetAll(int skip, int take)
+        {
+            return _context.Users.Select(c => new ListUserModel
+            {
+                Id = c.Id,
+                FirstName = c.FirstName,
+                LastName = c.LastName
+            }).AsNoTracking().Skip(skip).Take(take).ToList();
         }
     }
 }

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UserList.Domain.Interfaces.Repositories;
 using UserList.Domain.Interfaces.Services;
 using UserList.Domain.Models;
@@ -27,6 +29,24 @@ namespace UserList.Business.Services
         public ICollection<ListUserModel> GetAll()
         {
             return _userRepository.GetAll();
+        }
+
+        public ListUserModelPagination GetAll(int skip, int take)
+        {
+            var usersModel = _userRepository.GetAll(skip, take);
+
+            var listPagination = new ListUserModelPagination();
+            listPagination.UsersModel = usersModel;
+            listPagination.Total = usersModel.Count();
+            listPagination.Limit = take;
+
+            var pagesQtd = Math.Ceiling(Convert.ToDecimal(listPagination.Total) / Convert.ToDecimal(take));
+            var currentPage = Math.Ceiling(Convert.ToDecimal(skip) / Convert.ToDecimal(take)) + 1;
+
+            listPagination.Pages = Convert.ToInt32(pagesQtd);
+            listPagination.Page = Convert.ToInt32(currentPage);
+
+            return listPagination;
         }
 
         public void Add(RegisterUserModel userEditor)
