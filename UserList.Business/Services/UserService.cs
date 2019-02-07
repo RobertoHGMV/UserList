@@ -31,13 +31,16 @@ namespace UserList.Business.Services
             return _userRepository.GetAll();
         }
 
-        public ListUserModelPagination GetAll(int skip, int take)
+        public ListUserModelPagination GetAll(int page, int qtdPerPage)
         {
+            var skip = (page - 1) * qtdPerPage;
+            var take = qtdPerPage;
             var usersModel = _userRepository.GetAll(skip, take);
+            var usersTotal = _userRepository.GetTotalUsers();
 
             var listPagination = new ListUserModelPagination();
             listPagination.UsersModel = usersModel;
-            listPagination.Total = usersModel.Count();
+            listPagination.Total = usersTotal;
             listPagination.Limit = take;
 
             var pagesQtd = Math.Ceiling(Convert.ToDecimal(listPagination.Total) / Convert.ToDecimal(take));

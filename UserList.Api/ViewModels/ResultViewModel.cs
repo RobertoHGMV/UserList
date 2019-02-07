@@ -4,6 +4,6 @@ namespace UserList.Api.ViewModels
     {
         public bool Success { get; set; }
         public string Message { get; set; }
-        public object Data { get; set; }
+        public object Docs { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace UserList.Domain.Interfaces.Repositories
         User GetByKey(int id);
         ICollection<ListUserModel> GetAll();
         ICollection<ListUserModel> GetAll(int skip, int take);
+        int GetTotalUsers();
         void Add(User user);
         void Update(User user);
         void Delete(User user);

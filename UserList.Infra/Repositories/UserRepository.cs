@@ -58,5 +58,10 @@ namespace UserList.Infra.Repositories
                 FullName = c.ToString()
             }).AsNoTracking().Skip(skip).Take(take).ToList();
         }
+
+        public int GetTotalUsers()
+        {
+            return _context.Users.Select(c => new { c.Id }).AsNoTracking().Count();
+        }
     }
 }

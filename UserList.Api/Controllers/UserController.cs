@@ -26,7 +26,7 @@ namespace UserList.Api.Controllers
 
         [HttpGet]
         [Route("v1/users/{id}")]
-        [ResponseCache(Duration = 1, Location = ResponseCacheLocation.Client)]
+        //[ResponseCache(Duration = 1, Location = ResponseCacheLocation.Client)]
         public Task<IActionResult> Get(int id)
         {
             IActionResult result;
@@ -34,11 +34,11 @@ namespace UserList.Api.Controllers
             try
             {
                 var user = _service.GetByKey(id);
-                result = Ok(new ResultViewModel { Success = true, Message = "Operação realizada com sucesso", Data = user });
+                result = Ok(new ResultViewModel { Success = true, Message = "Operação realizada com sucesso", Docs = user });
             }
             catch (Exception ex)
             {
-                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Data = ex });
+                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Docs = ex });
             }
 
             return GetResult(result);
@@ -46,7 +46,7 @@ namespace UserList.Api.Controllers
 
         [HttpGet]
         [Route("v1/users")]
-        [ResponseCache(Duration = 1, Location = ResponseCacheLocation.Client)]
+        //[ResponseCache(Duration = 1, Location = ResponseCacheLocation.Client)]
         public Task<IActionResult> GetAll()
         {
             IActionResult result;
@@ -54,32 +54,32 @@ namespace UserList.Api.Controllers
             try
             {
                 var users = _service.GetAll();
-                result = Ok(new ResultViewModel { Success = true, Message = "Operação realizada com sucesso", Data = users });
+                result = Ok(new ResultViewModel { Success = true, Message = "Operação realizada com sucesso", Docs = users });
             }
             catch (Exception ex)
             {
-                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Data = ex });
+                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Docs = ex });
             }
 
             return GetResult(result);
         }
 
         [HttpGet]
-        [Route("v1/users/{skip}/{take}")]
-        [ResponseCache(Duration = 1, Location = ResponseCacheLocation.Client)]
-        public Task<IActionResult> GetAll(int skip, int take)
+        [Route("v1/users/{page}/{qtdPerPage}")]
+        //[ResponseCache(Duration = 1, Location = ResponseCacheLocation.Client)]
+        public Task<IActionResult> GetAll(int page, int qtdPerPage)
         {
             //skip = página atual - 1 * total por página (take) = pula 10 registros com total de 5 por página
             IActionResult result;
 
             try
             {
-                var users = _service.GetAll(skip, take);
-                result = Ok(new ResultViewModel { Success = true, Message = "Operação realizada com sucesso", Data = users });
+                var users = _service.GetAll(page, qtdPerPage);
+                result = Ok(new ResultViewModel { Success = true, Message = "Operação realizada com sucesso", Docs = users });
             }
             catch (Exception ex)
             {
-                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Data = ex });
+                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Docs = ex });
             }
 
             return GetResult(result);
@@ -98,7 +98,7 @@ namespace UserList.Api.Controllers
             }
             catch (Exception ex)
             {
-                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Data = ex });
+                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Docs = ex });
             }
 
             return GetResult(result);
@@ -117,7 +117,7 @@ namespace UserList.Api.Controllers
             }
             catch (Exception ex)
             {
-                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Data = ex });
+                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Docs = ex });
             }
 
             return GetResult(result);
@@ -136,7 +136,7 @@ namespace UserList.Api.Controllers
             }
             catch (Exception ex)
             {
-                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Data = ex });
+                result = BadRequest(new ResultViewModel { Success = false, Message = ex.Message, Docs = ex });
             }
 
             return GetResult(result);
