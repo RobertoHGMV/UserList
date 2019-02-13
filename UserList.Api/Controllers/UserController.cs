@@ -124,14 +124,14 @@ namespace UserList.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("v1/users")]
-        public Task<IActionResult> Delete([FromBody] DeleteModel userModel)
+        [Route("v1/users/{id}")]
+        public Task<IActionResult> Delete(int id)
         {
             IActionResult result;
 
             try
             {
-                _service.Delete(userModel.Id);
+                _service.Delete(id);
                 result = Ok(new ResultViewModel { Success = true, Message = "Usuário removido com sucesso" });
             }
             catch (Exception ex)
